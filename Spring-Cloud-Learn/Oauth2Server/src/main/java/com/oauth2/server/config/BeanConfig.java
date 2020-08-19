@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationManager;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
@@ -56,4 +57,8 @@ public class BeanConfig {
 		return jdbcClientDetailsService;
 	}
 
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder(){		
+		return new BCryptPasswordEncoder();
+	}
 }

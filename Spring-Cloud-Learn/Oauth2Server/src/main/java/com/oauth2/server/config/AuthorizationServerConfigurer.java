@@ -27,6 +27,9 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
 
 	@Autowired
 	UserDetailsServiceImpl userDetailsServiceImpl;
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 
 	/**
 	 * 令牌端点与令牌服务
@@ -52,7 +55,7 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
 	 */
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		clients.jdbc(dataSource).passwordEncoder(new BCryptPasswordEncoder());
+		clients.jdbc(dataSource).passwordEncoder(passwordEncoder);
 	}
 
 }
