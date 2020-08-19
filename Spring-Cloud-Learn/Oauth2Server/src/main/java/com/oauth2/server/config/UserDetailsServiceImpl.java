@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -13,7 +14,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         String[] permissionArray = new String[1];
         permissionArray[0] = "ROLE_PRODUCT_ADMIN";
-        UserDetails userDetails = User.withUsername(username).password("$2a$10$BurTWIy5NTF9GJJH4magz.9Bd4bBurWYG8tmXxeQh1vs7r/wnCFG2").authorities(permissionArray).build();
+        UserDetails userDetails = User.withUsername(username).password(new BCryptPasswordEncoder().encode(username)).authorities(permissionArray).build();
         return userDetails;
 	}
 
