@@ -5,29 +5,28 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 @Configuration
 public class AuthorizationServerConfigurer extends AuthorizationServerConfigurerAdapter {
-	
+
 	@Autowired
 	DataSource dataSource;
-	
+
 	@Autowired
 	JdbcTokenStore jdbcTokenStore;
-	
+
 	@Autowired
-	AuthorizationCodeServices authorizationCodeServices;
-	
+	DefaultTokenServices defaultTokenServices;
+
 	@Autowired
-	AuthenticationManager authenticationManager;
+	UserDetailsServiceImpl userDetailsServiceImpl;
 
 	/**
 	 * 令牌端点与令牌服务
@@ -35,8 +34,8 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints.tokenStore(jdbcTokenStore);
-		endpoints.authorizationCodeServices(authorizationCodeServices);
-		endpoints.authenticationManager(authenticationManager);
+		endpoints.tokenServices(defaultTokenServices);
+		endpoints.userDetailsService(userDetailsServiceImpl);
 		endpoints.allowedTokenEndpointRequestMethods(HttpMethod.POST);
 	}
 
@@ -55,6 +54,5 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.jdbc(dataSource).passwordEncoder(new BCryptPasswordEncoder());
 	}
-
 
 }
