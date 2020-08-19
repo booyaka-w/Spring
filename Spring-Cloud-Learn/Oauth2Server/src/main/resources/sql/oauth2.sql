@@ -11,7 +11,7 @@
  Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 18/08/2020 11:12:50
+ Date: 19/08/2020 14:41:07
 */
 
 SET NAMES utf8mb4;
@@ -39,6 +39,24 @@ CREATE TABLE `clientdetails`  (
 -- ----------------------------
 -- Records of clientdetails
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for credentials
+-- ----------------------------
+DROP TABLE IF EXISTS `credentials`;
+CREATE TABLE `credentials`  (
+  `id` int NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `version` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of credentials
+-- ----------------------------
+INSERT INTO `credentials` VALUES (1, 1, 'user', '$2a$10$BurTWIy5NTF9GJJH4magz.9Bd4bBurWYG8tmXxeQh1vs7r/wnCFG2', 0);
 
 -- ----------------------------
 -- Table structure for oauth_access_token
@@ -98,6 +116,7 @@ CREATE TABLE `oauth_client_details`  (
 -- ----------------------------
 -- Records of oauth_client_details
 -- ----------------------------
+INSERT INTO `oauth_client_details` VALUES ('curl_client', 'product_api', '$2a$10$BurTWIy5NTF9GJJH4magz.9Bd4bBurWYG8tmXxeQh1vs7r/wnCFG2', 'read,write', 'authorization_code', 'https://www.baidu.com/', 'ROLE_PRODUCT_ADMIN', 7200, 0, NULL, 'true');
 
 -- ----------------------------
 -- Table structure for oauth_client_token
