@@ -44,6 +44,7 @@ public class BeanConfig {
 	public DefaultTokenServices getDefaultTokenServices() {
 		DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
 		defaultTokenServices.setTokenStore(getJdbcTokenStore());
+		defaultTokenServices.setReuseRefreshToken(false);
 		defaultTokenServices.setSupportRefreshToken(false);
 		defaultTokenServices.setClientDetailsService(getJdbcClientDetailsService());
 		defaultTokenServices.setTokenEnhancer(new JwtAccessTokenConverter());
