@@ -11,7 +11,7 @@
  Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 19/08/2020 14:41:07
+ Date: 19/08/2020 15:22:52
 */
 
 SET NAMES utf8mb4;
@@ -39,24 +39,6 @@ CREATE TABLE `clientdetails`  (
 -- ----------------------------
 -- Records of clientdetails
 -- ----------------------------
-
--- ----------------------------
--- Table structure for credentials
--- ----------------------------
-DROP TABLE IF EXISTS `credentials`;
-CREATE TABLE `credentials`  (
-  `id` int NOT NULL,
-  `enabled` tinyint(1) NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `version` int NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of credentials
--- ----------------------------
-INSERT INTO `credentials` VALUES (1, 1, 'user', '$2a$10$BurTWIy5NTF9GJJH4magz.9Bd4bBurWYG8tmXxeQh1vs7r/wnCFG2', 0);
 
 -- ----------------------------
 -- Table structure for oauth_access_token
@@ -109,7 +91,7 @@ CREATE TABLE `oauth_client_details`  (
   `access_token_validity` int NULL DEFAULT NULL,
   `refresh_token_validity` int NULL DEFAULT NULL,
   `additional_information` varchar(4096) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `autoapprove` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `autoapprove` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '是否默认授权：true自动跳转页面，false跳转授权页面',
   PRIMARY KEY (`client_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
