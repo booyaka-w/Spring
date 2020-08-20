@@ -27,7 +27,7 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
 
 	@Autowired
 	UserDetailsServiceImpl userDetailsServiceImpl;
-	
+
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 
@@ -55,7 +55,19 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
 	 */
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		clients.jdbc(dataSource).passwordEncoder(passwordEncoder);
+		//clients.jdbc(dataSource).passwordEncoder(passwordEncoder);
+		/*使用in‐memory存储*/
+		clients.inMemory()
+		.withClient("c1")
+		.secret(new BCryptPasswordEncoder().encode("secret"))
+		.resourceIds("res1")
+		/*该client允许的授权类型 authorization_code,password,refresh_token,implicit,client_credentials*/
+		.authorizedGrantTypes("authorization_code","password","client_credentials","implicit","refresh_token")
+		/*允许的授权范围*/
+		.scopes("all")
+		/*加上验证回调地址*/
+		.autoApprove(false)
+		.redirectUris("http://www.baidu.com");
 	}
 
 }
