@@ -1,7 +1,12 @@
 /.project
 /.settings
 
-/Oauth2Server/.settings
-/Oauth2Server/target
-/Oauth2Server/.classpath
-/Oauth2Server/.project
+/Oauth2/Oauth2Server/.settings
+/Oauth2/Oauth2Server/target
+/Oauth2/Oauth2Server/.classpath
+/Oauth2/Oauth2Server/.project
+
+/Oauth2/ResourceServer/.settings
+/Oauth2/ResourceServer/target
+/Oauth2/ResourceServer/.classpath
+/Oauth2/ResourceServer/.project

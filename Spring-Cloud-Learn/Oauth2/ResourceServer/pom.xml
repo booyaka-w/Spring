@@ -8,26 +8,29 @@
 		<version>2.3.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>Spring-Cloud-Learn</groupId>
-	<artifactId>Spring-Cloud-Learn</artifactId>
+	<groupId>com.oatuh2.resource</groupId>
+	<artifactId>ResourceServer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Spring-Cloud-Learn</name>
-	<description>Spring-Cloud-Learn-Project</description>
-	<packaging>pom</packaging>
-	
+	<name>ResourceServer</name>
+	<description>Demo project for Spring Boot</description>
+
 	<properties>
 		<java.version>11</java.version>
+		<spring-cloud.version>Hoxton.SR7</spring-cloud.version>
 	</properties>
-	
-	<modules>
-		<module>Oauth2/Oauth2Server</module>
-		<module>Oauth2/ResourceServer</module>
-	</modules>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-oauth2</artifactId>
 		</dependency>
 
 		<dependency>
@@ -42,6 +45,18 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
