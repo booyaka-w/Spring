@@ -34,26 +34,26 @@ public class BeanConfig {
 	}
 
 	@Bean
-	public AuthenticationManager getAuthenticationManager() {
+	public AuthenticationManager authenticationManager() {
 		OAuth2AuthenticationManager authenticationManager = new OAuth2AuthenticationManager();
-		authenticationManager.setTokenServices(getDefaultTokenServices());
+		authenticationManager.setTokenServices(defaultTokenServices());
 		return authenticationManager;
 	}
 
 	@Bean
-	public DefaultTokenServices getDefaultTokenServices() {
+	public DefaultTokenServices defaultTokenServices() {
 		DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
 		defaultTokenServices.setTokenStore(getJdbcTokenStore());
 		defaultTokenServices.setReuseRefreshToken(false);
 		defaultTokenServices.setSupportRefreshToken(false);
-		defaultTokenServices.setClientDetailsService(getJdbcClientDetailsService());
+		defaultTokenServices.setClientDetailsService(jdbcClientDetailsService());
 		defaultTokenServices.setTokenEnhancer(new JwtAccessTokenConverter());
 		defaultTokenServices.setAccessTokenValiditySeconds(3600);
 		return defaultTokenServices;
 	}
 
 	@Bean
-	public JdbcClientDetailsService getJdbcClientDetailsService() {
+	public JdbcClientDetailsService jdbcClientDetailsService() {
 		JdbcClientDetailsService jdbcClientDetailsService = new JdbcClientDetailsService(dataSource);
 		return jdbcClientDetailsService;
 	}
