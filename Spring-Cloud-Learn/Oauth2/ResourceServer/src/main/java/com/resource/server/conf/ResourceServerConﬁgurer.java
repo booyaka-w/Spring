@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.provider.token.ResourceServerTokenSer
 @Configuration
 public class ResourceServerConﬁgurer extends ResourceServerConfigurerAdapter{
 	
-	public static final String RESOURCE_ID="";
+	public static final String RESOURCE_ID="RESOURCE_A";
 	
 	/*资源服务配置信息*/
 	@Override
@@ -37,7 +37,7 @@ public class ResourceServerConﬁgurer extends ResourceServerConfigurerAdapter{
 	public ResourceServerTokenServices tokenService() {
 		RemoteTokenServices remoteTokenServices = new RemoteTokenServices();
 		remoteTokenServices.setCheckTokenEndpointUrl("http://localhost:8081/oauth2/oauth/check_token");
-		remoteTokenServices.setClientId("c1");
+		remoteTokenServices.setClientId("curl_client");
 		remoteTokenServices.setClientSecret("secret");
 		return remoteTokenServices;
 	}

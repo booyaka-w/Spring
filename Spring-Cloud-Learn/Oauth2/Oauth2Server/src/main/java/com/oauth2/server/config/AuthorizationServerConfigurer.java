@@ -59,7 +59,7 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
 		clients.inMemory()
 		.withClient("curl_client")
 		.secret(new BCryptPasswordEncoder().encode("secret"))
-		.resourceIds("res1")
+		.resourceIds("RESOURCE_A")
 		/*该client允许的授权类型 authorization_code,password,refresh_token,implicit,client_credentials*/
 		.authorizedGrantTypes("authorization_code","password","client_credentials","implicit","refresh_token")
 		/*允许的授权范围*/
