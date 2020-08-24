@@ -13,10 +13,10 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @Configuration
 public class BeanConfig {
 
-	private String KEY = "uaa123";
+	private String KEY = "key";
 
 	/**
-	 * 
+	 * 加密策略
 	 */
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -44,7 +44,7 @@ public class BeanConfig {
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-		converter.setSigningKey(KEY); // 对称秘钥，资源服务器使用该秘钥来验证
+		converter.setSigningKey(KEY);
 		return converter;
 	}
 

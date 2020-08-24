@@ -112,5 +112,4 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
 		defaultTokenServices.setRefreshTokenValiditySeconds(259200);
 		return defaultTokenServices;
 	}
-
 }

@@ -7,13 +7,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	/*安全访问控制*/
+	/* 安全访问控制 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
-		http.csrf().disable().authorizeRequests().antMatchers("").hasAnyAuthority("");
-		
+
+		// http.csrf().disable().authorizeRequests().antMatchers("").hasAnyAuthority("");
+
 		super.configure(http);
 	}
-	
+
 }
