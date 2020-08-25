@@ -2,17 +2,20 @@ package com.oauth2.server.config;
 
 import java.util.Arrays;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
@@ -37,6 +40,12 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
 
 	@Autowired
 	JwtAccessTokenConverter accessTokenConverter;
+
+	@Autowired
+	PasswordEncoder passwordEncoder;
+
+	@Autowired
+	DataSource dataSource;
 
 	/**
 	 * 令牌访问端点与令牌服务：用来配置令牌（token）的访问端点和令牌服务(token services)。
@@ -69,25 +78,7 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
 	 */
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		/*
-		 * ==================================基于内存======================================
-		 */
-		/* 使用in‐memory存储 */
-		clients.inMemory().withClient("curl_client").secret(new BCryptPasswordEncoder().encode("secret"))
-				.resourceIds("RESOURCE_A")
-				/*
-				 * 该client允许的授权类型
-				 * authorization_code,password,refresh_token,implicit,client_credentials
-				 */
-				.authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit",
-						"refresh_token")
-				/* 允许的授权范围 */
-				.scopes("all")
-				/* 加上验证回调地址 */
-				.autoApprove(false).redirectUris("https://www.baidu.com/");
-		/*
-		 * ==================================基于内存======================================
-		 */
+		clients.jdbc(dataSource);
 	}
 
 	/**
@@ -111,5 +102,12 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
 		/* 刷新令牌默认有效期3天 */
 		defaultTokenServices.setRefreshTokenValiditySeconds(259200);
 		return defaultTokenServices;
+	}
+
+	@Bean
+	public ClientDetailsService clientDetailsService() {
+		ClientDetailsService clientDetailsService = new JdbcClientDetailsService(dataSource);
+		((JdbcClientDetailsService) clientDetailsService).setPasswordEncoder(passwordEncoder);
+		return clientDetailsService;
 	}
 }
