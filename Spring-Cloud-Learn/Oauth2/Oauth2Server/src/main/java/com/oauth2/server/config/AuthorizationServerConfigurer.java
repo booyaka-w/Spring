@@ -9,13 +9,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
-import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
@@ -40,9 +38,6 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
 
 	@Autowired
 	JwtAccessTokenConverter accessTokenConverter;
-
-	@Autowired
-	PasswordEncoder passwordEncoder;
 
 	@Autowired
 	DataSource dataSource;
@@ -104,10 +99,4 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
 		return defaultTokenServices;
 	}
 
-	@Bean
-	public ClientDetailsService clientDetailsService() {
-		ClientDetailsService clientDetailsService = new JdbcClientDetailsService(dataSource);
-		((JdbcClientDetailsService) clientDetailsService).setPasswordEncoder(passwordEncoder);
-		return clientDetailsService;
-	}
 }

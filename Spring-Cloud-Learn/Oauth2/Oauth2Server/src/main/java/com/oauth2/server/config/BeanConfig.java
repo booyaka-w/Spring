@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -48,6 +50,14 @@ public class BeanConfig {
 		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
 		converter.setSigningKey(KEY);
 		return converter;
+	}
+	
+
+	@Bean
+	public ClientDetailsService clientDetailsService(DataSource dataSource) {
+		ClientDetailsService clientDetailsService = new JdbcClientDetailsService(dataSource);
+		((JdbcClientDetailsService) clientDetailsService).setPasswordEncoder(passwordEncoder());
+		return clientDetailsService;
 	}
 
 }
