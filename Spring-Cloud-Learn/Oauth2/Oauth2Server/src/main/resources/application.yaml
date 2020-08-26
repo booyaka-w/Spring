@@ -18,5 +18,4 @@ spring:
       connection-test-query: SELECT 1    
   main:    allow-bean-definition-overriding: true
       
-      
 #schema.sql路径：https://github.com/spring-projects/spring-security-oauth/blob/master/spring-security-oauth2/src/test/resources/schema.sql

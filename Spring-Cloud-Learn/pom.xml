@@ -20,6 +20,7 @@
 	</properties>
 	
 	<modules>
+		<module>GateWayServer</module>
 		<module>Oauth2/Oauth2Server</module>
 		<module>Oauth2/ResourceServer</module>
 	</modules>
