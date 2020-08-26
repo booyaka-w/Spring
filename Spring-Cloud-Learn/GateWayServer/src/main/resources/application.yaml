@@ -4,3 +4,26 @@ server:
 spring:
   application:
     name: GateWayServer
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true #表明gateway开启服务注册和发现的功能，并且自动根据服务发现为每一个服务创建了一个router，这个router将以服务名开头的请求路径转发到对应的服务
+          lower-case-service-id: true # 服务名小写
+#      routes:
+#      - id: one
+#        # lb代表从注册中心获取服务，且已负载均衡方式转发
+#        uri: lb://one #目标服务地址
+#        predicates: #路由条件
+#          - Path=/one/**
+#        #过滤规则。 StripPrefix=1标识去掉url的第一个前缀，用后面的内容拼接到uri后面
+#        filters:
+#          - StripPrefix=1
+#      - id: two
+#        # lb代表从注册中心获取服务，且已负载均衡方式转发
+#        uri: lb://two #目标服务地址
+#        predicates: #路由条件
+#          - Path=/two/**
+#        #过滤规则。 StripPrefix=1标识去掉url的第一个前缀，用后面的内容拼接到uri后面
+#        filters:
+#          - StripPrefix=1
