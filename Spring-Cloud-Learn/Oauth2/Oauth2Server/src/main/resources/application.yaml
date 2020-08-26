@@ -16,7 +16,7 @@ spring:
       auto-commit: true
       idle-timeout: 30000
       connection-test-query: SELECT 1    
-  main:    allow-bean-definition-overriding: true
+  main:    allow-bean-definition-overriding: true
       
       
 #schema.sql路径：https://github.com/spring-projects/spring-security-oauth/blob/master/spring-security-oauth2/src/test/resources/schema.sql
