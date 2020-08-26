@@ -1,0 +1,4 @@
+GateWayServer、Oauth2Server、ResourceServer
+1，网关GateWayServer 转发请求、由资源服务器ResourceServer自己解析令牌
+2，网关GateWayServer 转发请求并解析令牌，把请求参数以明文形式交给资源服务器ResourceServer
+本示例实现第二种方式
