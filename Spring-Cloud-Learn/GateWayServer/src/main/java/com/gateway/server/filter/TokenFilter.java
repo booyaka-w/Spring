@@ -36,8 +36,8 @@ public class TokenFilter implements GlobalFilter,Ordered{
 	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 		logger.info("TokenFilter开始............");
 		
-		getAllParamtersRequest(exchange.getRequest());
-		getAllHeadersRequest(exchange.getRequest());
+		getRequestParamters(exchange.getRequest());
+		getRequestHeaders(exchange.getRequest());
 		
 		//拦截的逻辑。根据具体业务逻辑做拦截。
 		String token = exchange.getRequest().getQueryParams().getFirst("token");
@@ -63,14 +63,13 @@ public class TokenFilter implements GlobalFilter,Ordered{
 	}
 	
 	
-	private Map<String,Object> getAllParamtersRequest(ServerHttpRequest request) {
-		logger.info("getAllParamtersRequest开始............");
+	private Map<String,Object> getRequestParamters(ServerHttpRequest request) {
+		logger.info("getRequestParamters开始............");
 		Map<String,Object> map = new HashMap<>();
 		MultiValueMap<String, String> paramNames = request.getQueryParams();
 		Iterator<String> it= paramNames.keySet().iterator();
 		while (it.hasNext()) {
 			String paramName = (String) it.next();
-			
 			List<String> paramValues = paramNames.get(paramName);
 			if (paramValues.size() >= 1) {
 				String paramValue = paramValues.get(0);
@@ -81,14 +80,13 @@ public class TokenFilter implements GlobalFilter,Ordered{
 		return map;
 	}
 	
-	private Map<String,Object> getAllHeadersRequest(ServerHttpRequest request) {
-		logger.info("getAllHeadersRequest开始............");
+	private Map<String,Object> getRequestHeaders(ServerHttpRequest request) {
+		logger.info("getRequestHeaders开始............");
 		Map<String,Object> map = new HashMap<>();
 		HttpHeaders hearders = request.getHeaders();
 		Iterator<String> it= hearders.keySet().iterator();
 		while (it.hasNext()) {
 			String keyName = (String) it.next();
-			
 			List<String> headValues = hearders.get(keyName);
 			if (headValues.size() >= 1) {
 				String kvalue = headValues.get(0);
