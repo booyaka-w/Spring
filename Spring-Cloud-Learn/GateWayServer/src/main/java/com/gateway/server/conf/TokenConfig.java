@@ -7,7 +7,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
-public class BeanConfig {
+public class TokenConfig {
 
 	private String KEY = "key";
 
