@@ -1,6 +1,14 @@
 /.project
 /.settings
 
+/nacos-server-1.3.2/logs
+/nacos-server-1.3.2/status
+
+/GateWayServer/.settings
+/GateWayServer/target
+/GateWayServer/.classpath
+/GateWayServer/.project
+
 /Oauth2/Oauth2Server/.settings
 /Oauth2/Oauth2Server/target
 /Oauth2/Oauth2Server/.classpath
