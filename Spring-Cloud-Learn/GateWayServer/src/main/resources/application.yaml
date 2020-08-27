@@ -5,16 +5,26 @@ spring:
   application:
     name: GateWayServer
   profiles:
-    active: path-route
----  
+    active: oauth-route
+---
 spring:
-  profiles: path-route            #配置文件名 和 spring.profiles.active 相对应
+  profiles: oauth-route  cloud:    gateway:      routes:      - id: Oauth2Server
+        uri: lb://Oauth2Server
+        predicates:        - Method=GET,POST 
+      - id: ResourceServer
+        uri: lb://ResourceServer
+        predicates:
+        - Method=GET,POST       discovery:        locator:          enabled: true
+          lower-case-service-id: true---  
+spring:
+    #配置文件名 和 spring.profiles.active 相对应
+  profiles: path-route            
   cloud:
-    gateway:    #设置路由规则
+    gateway:
       routes:
-                # 采用自定义路由 ID（有固定用法，不同的 id 有不同的功能，详见：https://cloud.spring.io/spring-cloud-gateway/2.0.x/single/spring-cloud-gateway.html#gateway-route-filters）
+                     # 采用自定义路由 ID（有固定用法，不同的 id 有不同的功能，详见：https://cloud.spring.io/spring-cloud-gateway/2.0.x/single/spring-cloud-gateway.html#gateway-route-filters）
         - id: RESOURCE-A
-                     # 采用 LoadBalanceClient 方式请求，以 lb:// 开头，后面的是注册在 Nacos 上的服务名
+                         # 采用 LoadBalanceClient 方式请求，以 lb:// 开头，后面的是注册在 Nacos 上的服务名
           uri: lb://resource-a
           # Predicate 翻译过来是“谓词”的意思，必须，主要作用是匹配用户的请求，有很多种用法
           predicates:
@@ -26,8 +36,8 @@ spring:
             - Method=GET,POST           #表示将Path的路径/service01在转发前去掉，如果设置StripPrefix=2，表示将/service01/*去掉 以此类推... 同时将spring.cloud.gateway.discovery.locator.enabled改为false，如果不改的话，之前的localhost:8799/client01/test01这样的请求地址也能正常访问，因为这时为每个服务创建了2个router
       discovery:
         locator:
-                    #表示gateway开启服务注册和发现功能,
-                     #并且spring cloud gateway自动根据服务发现为每一个服务创建了一个router，这个router将以服务名开头的请求路径转发到对应的服务
+                         #表示gateway开启服务注册和发现功能,
+                         #并且spring cloud gateway自动根据服务发现为每一个服务创建了一个router，这个router将以服务名开头的请求路径转发到对应的服务
           enabled: true
                           #表示将请求路径的服务名配置改成小写  因为服务注册的时候，向注册中心注册时将服务名转成大写的了
           lower-case-service-id: true
@@ -43,7 +53,7 @@ spring:
         predicates:
                     #表示在该时间点之后的时间，发出的请求会被路由到uri
         - After=2019-06-20T00:00:00.789-07:00[America/Denver]
-       #- After=1561098916602  也可以用long类型的时间戳格式
+        #- After=1561098916602  也可以用long类型的时间戳格式
 
 ---
 spring:
@@ -54,7 +64,7 @@ spring:
       - id: gateway
         uri: lb://MICROSERVICE01
         predicates:
-        #表示在该时间点之前的时间，发出的请求会被路由到uri
+                    #表示在该时间点之前的时间，发出的请求会被路由到uri
         - Before=2019-12-20T00:00:00.789-07:00[America/Denver]
 
 ---
@@ -66,7 +76,7 @@ spring:
       - id: gateway
         uri: lb://MICROSERVICE01
         predicates:
-        #表示在该时间点之间的时间，发出的请求会被路由到uri
+                    #表示在该时间点之间的时间，发出的请求会被路由到uri
         - Between=2019-02-20T00:00:00.789-07:00[America/Denver],2019-12-20T00:00:00.789-07:00[America/Denver]
 
 ---
@@ -78,9 +88,9 @@ spring:
       - id: gateway
         uri: lb://MICROSERVICE01
         predicates:
-        #表示当请求的请求头中有 key=Hello，value=World，发出的请求会被路由到uri
+                    #表示当请求的请求头中有 key=Hello，value=World，发出的请求会被路由到uri
         - Header=Hello, World
-        #可以是正则表达式 例如 - Header=Hello, \d+
+                    #可以是正则表达式 例如 - Header=Hello, \d+
 
 ---
 spring:
