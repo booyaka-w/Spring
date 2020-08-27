@@ -4,13 +4,17 @@ server:
 spring:
   application:
     name: GateWayServer
+  security:    user:      name: user
+      password: user
   profiles:
     active: oauth-route
+
 ---
 spring:
   profiles: oauth-route  cloud:    gateway:      routes:      - id: Oauth2Server
-        uri: lb://Oauth2Server
-        predicates:        - Method=GET,POST 
+        uri: lb://oauth2
+        predicates:
+          - Method=GET,POST
       - id: ResourceServer
         uri: lb://ResourceServer
         predicates:
