@@ -1,6 +1,7 @@
 /.project
 /.settings
 
+/nacos-server-1.3.2/data
 /nacos-server-1.3.2/logs
 /nacos-server-1.3.2/status
 
