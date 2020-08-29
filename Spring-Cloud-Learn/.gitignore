@@ -5,6 +5,9 @@
 /nacos-server-1.3.2/logs
 /nacos-server-1.3.2/status
 
+/nacos-server-1.3.2/bin/logs
+/nacos-server-1.3.2/bin/work
+
 /GateWayServer/.settings
 /GateWayServer/target
 /GateWayServer/.classpath
