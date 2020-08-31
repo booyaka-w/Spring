@@ -13,8 +13,8 @@
 #POST请求				http://localhost:8081/oauth2/oauth/token？client_id=c1&client_secret=secret&grant_type=password&username=shangsan&password=123 
 
 
-#网关获取授权码：			http://localhost:8083/gateway/Oauth2Server/oauth2/oauth/authorize?client_id=Api_Client&response_type=code&scope=ALL&redirect_uri=https://www.baidu.com/
-#网关请求资源：				http://localhost:8083/gateway/ResourceServer/resource/res1
+#网关获取授权码：			http://localhost:8083/Oauth2Server/oauth2/oauth/authorize?client_id=Api_Client&response_type=code&scope=ALL&redirect_uri=https://www.baidu.com/
+#网关请求资源：				http://localhost:8083/ResourceServer/resource/res1
 
 
 网关测试					http://localhost:8083/RESOURCE-A/resourcea/resa
