@@ -23,6 +23,8 @@
 		<module>GateWayServer</module>
 		<module>Oauth2/Oauth2Server</module>
 		<module>Oauth2/ResourceServer</module>
+		<module>Oauth2/TestResource/Resource-A</module>
+		<module>Oauth2/TestResource/Resource-B</module>
 	</modules>
 
 	<dependencies>
