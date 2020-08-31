@@ -22,3 +22,13 @@
 /Oauth2/ResourceServer/target
 /Oauth2/ResourceServer/.classpath
 /Oauth2/ResourceServer/.project
+
+/Oauth2/TestResource/Resource-A/.settings
+/Oauth2/TestResource/Resource-A/target
+/Oauth2/TestResource/Resource-A/.classpath
+/Oauth2/TestResource/Resource-A/.project
+
+/Oauth2/TestResource/Resource-B/.settings
+/Oauth2/TestResource/Resource-B/target
+/Oauth2/TestResource/Resource-B/.classpath
+/Oauth2/TestResource/Resource-B/.project
