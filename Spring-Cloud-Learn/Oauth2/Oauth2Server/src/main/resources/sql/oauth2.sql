@@ -11,7 +11,7 @@
  Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 31/08/2020 08:37:06
+ Date: 31/08/2020 08:56:36
 */
 
 SET NAMES utf8mb4;
@@ -98,7 +98,7 @@ CREATE TABLE `oauth_client_details`  (
 -- ----------------------------
 -- Records of oauth_client_details
 -- ----------------------------
-INSERT INTO `oauth_client_details` VALUES ('Api_Client', 'product_api', '$2a$10$SU4XsI7aKT/vr/bw2.VnreX2TKphYQiBvMznc1jhatjleG2l2xoVm', 'ALL', 'authorization_code', 'https://www.baidu.com/', 'ROLE_PRODUCT_ADMIN', 7200, 0, NULL, 'true');
+INSERT INTO `oauth_client_details` VALUES ('Api_Client', 'RESOURCE_A', '$2a$10$SU4XsI7aKT/vr/bw2.VnreX2TKphYQiBvMznc1jhatjleG2l2xoVm', 'ALL', 'authorization_code', 'https://www.baidu.com/', 'ROLE_PRODUCT_ADMIN', 7200, 0, NULL, 'true');
 
 -- ----------------------------
 -- Table structure for oauth_client_token

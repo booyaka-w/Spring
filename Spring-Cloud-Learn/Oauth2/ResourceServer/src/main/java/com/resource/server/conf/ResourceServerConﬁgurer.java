@@ -29,7 +29,7 @@ public class ResourceServerConﬁgurer extends ResourceServerConfigurerAdapter {
 	/* 安全能访问策略 */
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/**").access("#oauth2.hasScope('all')").and().csrf().disable()
+		http.authorizeRequests().antMatchers("/**").access("#oauth2.hasScope('ALL')").and().csrf().disable()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 
