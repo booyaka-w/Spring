@@ -16,5 +16,25 @@ spring:
       idle-timeout: 30000
       connection-test-query: SELECT 1    
       
+security:
+  oauth2:
+    client:
+      access-token-uri: http://localhost:8083/Oauth2Server/oauth2/oauth/token
+      user-authorization-uri: http://localhost:8083/Oauth2Server/oauth2/oauth/authorize
+      client-id: Api_Client
+      client-secret: secret
+    resource:
+      user-info-uri: http://localhost:${server.port}/auth/home/principal
+      prefer-token-info: false
+      jwt:
+        key-value: sophia_oauth_key
+#        key-uri: http://localhost:${server.port}/auth/oauth/token_key
+# key-value跟key-uri：token的验证可以直接在本地（即本服务）完成，不需要连接wsm-oauth服务认证服务器。
+#              注意：如果要使用key-value对称加密方式，
+#                    到wsm-oauth服务AuthorizationServerConfig类JwtAccessTokenConverter方法中使用对称加密方式
+#    jwt:
+#      key-value: sophia #对称加密方式
+#      key-uri: http://localhost:${server.port}/auth/oauth/token_key #非对称加密方式 (获取公钥)      
+              
       
 #schema.sql路径：https://github.com/spring-projects/spring-security-oauth/blob/master/spring-security-oauth2/src/test/resources/schema.sql
