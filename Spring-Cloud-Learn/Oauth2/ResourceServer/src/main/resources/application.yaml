@@ -23,6 +23,7 @@ security:
       user-authorization-uri: http://localhost:8083/Oauth2Server/oauth2/oauth/authorize
       client-id: Api_Client
       client-secret: secret
+    resource:      id: RESOURCE_A
 #    resource:
 #      user-info-uri: http://localhost:${server.port}/auth/home/principal
 #      prefer-token-info: false
