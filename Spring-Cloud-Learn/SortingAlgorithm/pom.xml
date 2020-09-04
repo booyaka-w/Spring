@@ -8,30 +8,20 @@
 		<version>2.3.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>Spring-Cloud-Learn</groupId>
-	<artifactId>Spring-Cloud-Learn</artifactId>
+	<groupId>com.sorting.algorithm</groupId>
+	<artifactId>SortingAlgorithm</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Spring-Cloud-Learn</name>
-	<description>Spring-Cloud-Learn-Project</description>
-	<packaging>pom</packaging>
-	
+	<name>SortingAlgorithm</name>
+	<description>Demo project for Spring Boot</description>
+
 	<properties>
 		<java.version>11</java.version>
 	</properties>
-	
-	<modules>
-		<module>GateWayServer</module>
-		<module>Oauth2/Oauth2Server</module>
-		<module>Oauth2/ResourceServer</module>
-		<module>Oauth2/TestResource/Resource-A</module>
-		<module>Oauth2/TestResource/Resource-B</module>
-		<module>SortingAlgorithm</module>
-	</modules>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
