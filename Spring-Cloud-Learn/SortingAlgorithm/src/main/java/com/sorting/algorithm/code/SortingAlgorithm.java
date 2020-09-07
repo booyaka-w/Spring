@@ -3,7 +3,7 @@ package com.sorting.algorithm.code;
 public class SortingAlgorithm {
 
 	/**
-	 * 冒泡排序
+	 * 1，冒泡排序
 	 * 
 	 * @param array
 	 * @return
@@ -25,7 +25,7 @@ public class SortingAlgorithm {
 	}
 
 	/**
-	 * 选择排序
+	 * 2，选择排序
 	 * 
 	 * @param array
 	 * @return
@@ -49,7 +49,7 @@ public class SortingAlgorithm {
 	}
 
 	/**
-	 * 插入排序
+	 * 3，插入排序
 	 * 
 	 * @param array
 	 * @return
