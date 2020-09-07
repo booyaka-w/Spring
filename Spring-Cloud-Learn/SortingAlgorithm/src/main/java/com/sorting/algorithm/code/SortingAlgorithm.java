@@ -31,15 +31,17 @@ public class SortingAlgorithm {
 	 * @return
 	 */
 	public static int[] selectionSort(int[] array) {
-		if (array.length == 0)
+		if (array.length == 0) {
 			return array;
+		}
 		for (int i = 0; i < array.length; i++) {
 			int minIndex = i;
 			for (int j = i; j < array.length; j++) {
 				// 找到最小的数
-				if (array[j] < array[minIndex])
+				if (array[j] < array[minIndex]) {
 					// 将最小数的索引保存
 					minIndex = j;
+				}
 			}
 			int temp = array[minIndex];
 			array[minIndex] = array[i];
@@ -55,8 +57,9 @@ public class SortingAlgorithm {
 	 * @return
 	 */
 	public static int[] insertionSort(int[] array) {
-		if (array.length == 0)
+		if (array.length == 0) {
 			return array;
+		}
 		int current;
 		for (int i = 0; i < array.length - 1; i++) {
 			current = array[i + 1];
