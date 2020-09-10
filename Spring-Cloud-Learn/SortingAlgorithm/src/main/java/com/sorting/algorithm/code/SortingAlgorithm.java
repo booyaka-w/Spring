@@ -100,7 +100,7 @@ public class SortingAlgorithm {
 	}
 
 	/**
-	 * 归并排序
+	 * 5，归并排序
 	 *
 	 * @param array
 	 * @return
