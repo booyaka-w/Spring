@@ -5,34 +5,23 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.3.RELEASE</version>
+		<version>2.3.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>Spring-Cloud-Learn</groupId>
-	<artifactId>Spring-Cloud-Learn</artifactId>
+	<groupId>com.commons</groupId>
+	<artifactId>commons-util</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Spring-Cloud-Learn</name>
-	<description>Spring-Cloud-Learn-Project</description>
-	<packaging>pom</packaging>
-	
+	<name>commons-util</name>
+	<description>Demo project for Spring Boot</description>
+
 	<properties>
 		<java.version>11</java.version>
 	</properties>
-	
-	<modules>
-		<module>GateWayServer</module>
-		<module>Oauth2/Oauth2Server</module>
-		<module>Oauth2/ResourceServer</module>
-		<module>Oauth2/TestResource/Resource-A</module>
-		<module>Oauth2/TestResource/Resource-B</module>
-		<module>SortingAlgorithm</module>
-		<module>commons-util</module>
-	</modules>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
 		<dependency>

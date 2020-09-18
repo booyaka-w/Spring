@@ -37,3 +37,8 @@
 /SortingAlgorithm/target
 /SortingAlgorithm/.classpath
 /SortingAlgorithm/.project
+
+/commons-util/.settings
+/commons-util/target
+/commons-util/.classpath
+/commons-util/.project
