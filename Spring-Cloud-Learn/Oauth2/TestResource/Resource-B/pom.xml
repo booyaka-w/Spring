@@ -69,12 +69,6 @@
 		    <artifactId>redisson-spring-boot-starter</artifactId>
 		    <version>3.13.4</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.redisson/redisson-spring-data-21 -->
-		<dependency>
-		    <groupId>org.redisson</groupId>
-		    <artifactId>redisson-spring-data-21</artifactId>
-		    <version>3.13.4</version>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.netty/netty-transport-native-epoll -->
 		<dependency>
 		    <groupId>io.netty</groupId>
