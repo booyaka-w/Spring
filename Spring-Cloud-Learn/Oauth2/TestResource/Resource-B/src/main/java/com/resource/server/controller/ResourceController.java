@@ -1,5 +1,7 @@
 package com.resource.server.controller;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.resource.server.commons.RedisLockUtil;
 import com.resource.server.model.TestTable;
 import com.resource.server.service.TestTableService;
 
@@ -31,8 +34,9 @@ public class ResourceController {
 	@RequestMapping("/update")
 	public String updateTable(HttpServletRequest request) throws Exception {
 		int port = request.getServerPort();
-		synchronized (this) {
-			TestTable table = testTableService.query(1);
+		TestTable table = testTableService.query(1);
+		try {
+			RedisLockUtil.tryLock(String.valueOf(table.getPk()), TimeUnit.SECONDS, 30, 30);
 			if (table.getNumber() > 0) {
 				table.setNumber(table.getNumber() - 1);
 				table.setPort(port + "");
@@ -41,6 +45,9 @@ public class ResourceController {
 					testTableService.insert(table);
 				}
 			}
+		} catch (Exception e) {
+		} finally {
+			RedisLockUtil.unlock(String.valueOf(table.getPk()));
 		}
 		return "port = " + port;
 	}
