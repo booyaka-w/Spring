@@ -28,4 +28,9 @@ public class TestTableServiceImpl implements TestTableService {
 		return testTableDao.query(pk);
 	}
 
+	@Override
+	public int updateWithVersion(TestTable table) throws Exception {
+		return testTableDao.updateWithVersion(table);
+	}
+
 }

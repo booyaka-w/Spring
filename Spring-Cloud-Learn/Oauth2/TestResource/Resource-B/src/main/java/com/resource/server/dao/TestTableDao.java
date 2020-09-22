@@ -11,6 +11,8 @@ public interface TestTableDao {
 
 	int update(TestTable table) throws Exception;
 
+	int updateWithVersion(TestTable table) throws Exception;
+
 	TestTable query(int pk);
 
 }

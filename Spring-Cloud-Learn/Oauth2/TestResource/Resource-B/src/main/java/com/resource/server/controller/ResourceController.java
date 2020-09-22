@@ -60,4 +60,23 @@ public class ResourceController {
 		}
 		return "port = " + port;
 	}
+
+	@RequestMapping("/update1")
+	public String updateTable1(HttpServletRequest request) throws Exception {
+		int port = request.getServerPort();
+		TestTable table = testTableService.query(1);
+		try {
+			if (table.getNumber() > 0) {
+				table.setNumber(table.getNumber() - 1);
+				table.setPort(port + "");
+				int res = testTableService.updateWithVersion(table);
+				if (res == 1) {
+					testTableService.insert(table);
+				}
+			}
+		} catch (Exception e) {
+		} finally {
+		}
+		return "port = " + port;
+	}
 }

@@ -10,7 +10,6 @@
   <sql id="Base_Column_List">
     pk, number, version, port
   </sql>
-  
   <select id="query" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -56,5 +55,20 @@
       </if>
     </set>
     where pk = #{pk,jdbcType=INTEGER}
+  </update>
+  <update id="updateWithVersion" parameterType="com.resource.server.model.TestTable">
+    update test_table
+    <set>
+      <if test="number != null">
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER}+1,
+      </if>
+      <if test="port != null">
+        port = #{port,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pk = #{pk,jdbcType=INTEGER} and version = #{version,jdbcType=INTEGER}
   </update>
 </mapper>
