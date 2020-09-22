@@ -39,7 +39,7 @@ public class ResourceController {
 	public String updateTable(HttpServletRequest request) throws Exception {
 		int port = request.getServerPort();
 		System.err.println(redisson);
-		RLock rlock = redisson.getLock("lock");
+		RLock rlock = redisson.getLock("lock" + 1);
 		boolean state = rlock.tryLock(300, 300, TimeUnit.SECONDS);
 		TestTable table = testTableService.query(1);
 		try {
