@@ -38,10 +38,11 @@ public class ResourceController {
 	@RequestMapping("/update")
 	public String updateTable(HttpServletRequest request) throws Exception {
 		int port = request.getServerPort();
+		int pk = 1;
 		System.err.println(redisson);
-		RLock rlock = redisson.getLock("lock" + 1);
+		RLock rlock = redisson.getLock("lock" + pk);
 		boolean state = rlock.tryLock(300, 300, TimeUnit.SECONDS);
-		TestTable table = testTableService.query(1);
+		TestTable table = testTableService.query(pk);
 		try {
 			if (state) {
 				if (table.getNumber() > 0) {
