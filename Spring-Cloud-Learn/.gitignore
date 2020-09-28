@@ -42,3 +42,8 @@
 /commons-util/target
 /commons-util/.classpath
 /commons-util/.project
+
+/SpringBootAdmin/.settings
+/SpringBootAdmin/target
+/SpringBootAdmin/.classpath
+/SpringBootAdmin/.project
