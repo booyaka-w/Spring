@@ -27,6 +27,7 @@
 		<module>Oauth2/TestResource/Resource-B</module>
 		<module>SortingAlgorithm</module>
 		<module>commons-util</module>
+		<module>SpringBootAdmin</module>
 	</modules>
 
 	<dependencies>

@@ -1,0 +1,30 @@
+server:
+  port: 8888 #服务端口号  servlet:    context-path: /admin
+    
+spring:
+  application:
+    name: admin #提供者服务名  
+  security:    user:      name: user
+      password: password  cloud:    nacos:      discovery:
+        server-addr: 127.0.0.1:8848        metadata:          user:
+            name: user
+            password: password
+          management: 
+            context-path: /${spring.application.name}/actuator
+          health-check-url: http://localhost:${server.port}/${spring.application.name}/actuator/health
+          status-page-url: http://localhost:${server.port}/${spring.application.name}/actuator/info
+          home-page-url: http://localhost:${server.port}/${spring.application.name}/applications
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+      health:
+        show-details: ALWAYS
+ 
+info:
+  version: '@project.version@'
+  name: '@project.artifactId@'
+  author: Edge
+  email: 515767010@qq.com        
