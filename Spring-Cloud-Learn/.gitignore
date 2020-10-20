@@ -47,3 +47,8 @@
 /SpringBootAdmin/target
 /SpringBootAdmin/.classpath
 /SpringBootAdmin/.project
+
+/knife4j-demo/.settings
+/knife4j-demo/target
+/knife4j-demo/.classpath
+/knife4j-demo/.project
