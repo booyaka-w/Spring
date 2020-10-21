@@ -28,7 +28,6 @@
 		<module>SortingAlgorithm</module>
 		<module>commons-util</module>
 		<module>SpringBootAdmin</module>
-		<module>knife4j-demo</module>
 	</modules>
 
 	<dependencies>
